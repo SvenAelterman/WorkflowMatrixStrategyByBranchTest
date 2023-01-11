@@ -1,0 +1,20 @@
+name: Matrix test
+
+on:
+  push:
+  
+jobs:
+  build:
+    strategy:
+      matrix:
+        someCode: [main, branch-1]
+       include:
+        - someCode: main
+          envVar1: randomvalue
+        - someCode: branch-1
+          envVar1: anotherrandomvalue
+    runs-on: windows-latest
+    if: ${{ github.ref_name == someCode }}
+    steps:
+      - name: simple output
+        run: powershell Write-Host ${{ someCode }}
