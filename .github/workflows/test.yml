@@ -14,7 +14,7 @@ jobs:
          - someCode: branch-1
            envVar1: anotherrandomvalue
     runs-on: windows-latest
-    if: ${{ github.ref_name == someCode }}
+    if: ${{ github.ref_name == matrix.someCode }}
     steps:
       - name: simple output
-        run: powershell Write-Host ${{ someCode }}
+        run: powershell Write-Host ${{ matrix.someCode }}
